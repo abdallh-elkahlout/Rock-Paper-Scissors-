@@ -83,7 +83,7 @@
     <div id="result"></div>
     <div id="buttons">
       <button id="play-again">Play Again</button>
-      <button id="customize">New Icons</button>
+      <button onclick="location.href='https://abdallh-elkahlout.github.io/Water-Wood-Fire/'">New Icons</button>
     </div>
   </div>
   <script>
@@ -93,7 +93,6 @@
     const p = document.getElementById('Pa');
     const s = document.getElementById('Sc');
 
-    let currentChoices = choices;
     // function to determine the winner
     function determineWinner(playerChoice, computerChoice) {
       if (playerChoice === computerChoice) {
@@ -190,7 +189,8 @@
 
     });
 
-    document.getElementById('customize').addEventListener('click', function () {
+  /** 
+   document.getElementById('customize').addEventListener('click', function () {
       if (r.textContent == "Rock") {
         document.getElementById('player-choice').textContent = '';
         document.getElementById('computer-choice').textContent = '';
@@ -204,7 +204,7 @@
         document.getElementById('customize').innerHTML = "No More";
       }
 
-    });
+    });**/
   </script>
 </body>
 
