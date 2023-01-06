@@ -88,7 +88,6 @@
   </div>
   <script>
     const choices = ['rock', 'paper', 'scissors'];
-    const choicestwo = ['water', 'wood', 'fire'];
     const r = document.getElementById('Ro');
     const p = document.getElementById('Pa');
     const s = document.getElementById('Sc');
@@ -106,67 +105,30 @@
       }
     }
 
-    function determineWinnerbyclass(playerChoice, computerChoice) {
-      if (playerChoice === computerChoice) {
-        return 'tie';
-      } else if ((playerChoice === 'water' && computerChoice === 'fire') ||
-        (playerChoice === 'wood' && computerChoice === 'water') ||
-        (playerChoice === 'fire' && computerChoice === 'wood')) {
-        return 'player';
-      } else {
-        return 'computer';
-      }
-    }
-
     // function to get the computer's choice
     function getComputerChoice() {
       return choices[Math.floor(Math.random() * choices.length)];
     }
-    function getComputerChoicebyclass() {
-      return choicestwo[Math.floor(Math.random() * choicestwo.length)];
 
+    for (let i = 0; i < choices.length; i++) {
+      document.getElementById(choices[i]).addEventListener('click', function () {
+        // update player's choice section
+        document.getElementById('player-choice').textContent = this.id;
+        // get computer's choice and update computer's choice section
+        const computerChoice = getComputerChoice();
+        document.getElementById('computer-choice').textContent = computerChoice;
+        // determine the winner and update result section
+        const result = determineWinner(this.id, computerChoice);
+        if (result === 'player') {
+          document.getElementById('result').textContent = 'You win!';
+        } else if (result === 'computer') {
+          document.getElementById('result').textContent = 'You lose!';
+        } else {
+          document.getElementById('result').textContent = 'Its a tie!';
+        }
+      });
     }
 
-
-    if (r.textContent == "Water") {
-      for (let i = 0; i < choicestwo.length; i++) {
-        document.getElementsByClassName(choicestwo[i]).addEventListener('click', function () {
-          // update player's choice section
-          document.getElementsByClassName('player-choice').textContent = choicestwo[i];
-          // get computer's choice and update computer's choice section
-          const computerChoice = getComputerChoicebyclass();
-          document.getElementById('computer-choice').textContent = computerChoice;
-          // determine the winner and update result section
-          const result = determineWinnerbyclass(choicestwo[i], computerChoice);
-          if (result === 'player') {
-            document.getElementById('result').textContent = 'You win!';
-          } else if (result === 'computer') {
-            document.getElementById('result').textContent = 'You lose!';
-          } else {
-            document.getElementById('result').textContent = 'Its a tie!';
-          }
-        });
-      }
-    } else if (r.textContent == "Rock") {
-      for (let i = 0; i < choices.length; i++) {
-        document.getElementById(choices[i]).addEventListener('click', function () {
-          // update player's choice section
-          document.getElementById('player-choice').textContent = this.id;
-          // get computer's choice and update computer's choice section
-          const computerChoice = getComputerChoice();
-          document.getElementById('computer-choice').textContent = computerChoice;
-          // determine the winner and update result section
-          const result = determineWinner(this.id, computerChoice);
-          if (result === 'player') {
-            document.getElementById('result').textContent = 'You win!';
-          } else if (result === 'computer') {
-            document.getElementById('result').textContent = 'You lose!';
-          } else {
-            document.getElementById('result').textContent = 'Its a tie!';
-          }
-        });
-      }
-    }
 
 
 
@@ -188,23 +150,6 @@
       document.getElementById('customize').innerHTML = "New Icons"
 
     });
-
-  /** 
-   document.getElementById('customize').addEventListener('click', function () {
-      if (r.textContent == "Rock") {
-        document.getElementById('player-choice').textContent = '';
-        document.getElementById('computer-choice').textContent = '';
-        document.getElementById('result').textContent = '';
-        r.innerHTML = "Water";
-        p.innerHTML = "Wood";
-        s.innerHTML = "Fire";
-        image1.setAttribute("src", "images/water.png");
-        image2.setAttribute("src", "images/wood.png");
-        image3.setAttribute("src", "images/fire.png");
-        document.getElementById('customize').innerHTML = "No More";
-      }
-
-    });**/
   </script>
 </body>
 
